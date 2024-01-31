@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+}
+
+body {
+    height: 100vh;;
+}
+
+.tool {
+    background: rgb(47, 178, 211);
+    display: flex;
+    align-items: center;
+}
+
+.tool > * {
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+    background: white;
+    font-size: 20px;
+    padding: 5px;
+}
+
+#save {
+    margin-left: auto;
+}
