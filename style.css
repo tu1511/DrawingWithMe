@@ -19,7 +19,7 @@ body {
     height: 40px;
     width: 40px;
     margin: 5px;
-    background: white;
+    background: #ffffff;
     font-size: 20px;
     padding: 5px;
     display: flex;
@@ -27,7 +27,7 @@ body {
     align-items: center;
 }
 
-span {
+span , input{
     border: 2px solid black;
 }
 
@@ -37,10 +37,27 @@ span {
 
 canvas {
     border: 1px solid black;
-    margin: 0 auto;
+    margin: 10px auto;
+    /* background-color: #ffffff; */
 }
 
 .container {
     display: flex;
     justify-content: center;
 }
+
+@media only screen and (max-width: 600px) {
+    canvas {
+        margin: 20px;
+        height: 600px;
+        width: 400px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    canvas {
+        margin: 20px;
+        height: 800px;
+        width: 900px;
+    }
+  }
