@@ -5,8 +5,15 @@
     /* border: 1px solid black; */
 }
 
-body {
-    height: 100vh;;
+html, body {
+    height: 100%;
+    background:
+    radial-gradient(at 0% 0%, rgb(252, 230, 227) 0px, transparent 50%),
+    radial-gradient(at 13% 36%, rgb(173, 211, 211) 0px, transparent 50%),
+    radial-gradient(at 56% 86%, #ece8e8 0px, transparent 50%),
+    radial-gradient(at 69% 44%, rgb(241, 112, 112) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(204, 100%, 73%, 1) 0px, transparent 50%),
+    radial-gradient(at 95% 5%, hsla(302, 81%, 90%, 1) 0px, transparent 50%);
 }
 
 .tool {
@@ -27,7 +34,7 @@ body {
     align-items: center;
 }
 
-span , input{
+span, input, a, button {
     border: 2px solid black;
 }
 
@@ -38,6 +45,7 @@ span , input{
 canvas {
     border: 1px solid black;
     margin: 10px auto;
+    background-color: white;
 }
 
 .container {
@@ -45,17 +53,34 @@ canvas {
     justify-content: center;
 }
 
+footer {
+    color: black;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: larger;
+    font-weight: bold;
+    z-index: 1;
+}
+
 /* responsive */
-
 @media only screen and (max-width: 600px) {
-
     body {
-        height: auto;
+        min-height: auto;
+
     }
 
     canvas {
         margin: 20px;
-        height: 600px;
-        width: 360px;
+        height: 500px;
+        width: 94%;
+    }
+
+    footer {
+        position: static;
+        width: 100%;
+        bottom: auto;
     }
 }

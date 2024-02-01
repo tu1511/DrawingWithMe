@@ -29,10 +29,11 @@ canvas.addEventListener('touchstart', startDrawing);
 
 function startDrawing(e) {
     e.preventDefault();
+    var rect = canvas.getBoundingClientRect();
     pos1 = {
-        x: (e.type === 'mousedown') ? e.offsetX : e.touches[0].clientX,
-        y: (e.type === 'mousedown') ? e.offsetY : e.touches[0].clientY
-    }
+        x: (e.type === 'mousedown') ? e.offsetX : e.touches[0].clientX - rect.left,
+        y: (e.type === 'mousedown') ? e.offsetY : e.touches[0].clientY - rect.top
+    };
     isDrawing = true;
 }
 
@@ -42,28 +43,33 @@ canvas.addEventListener('touchmove', draw);
 
 function draw(e) {
     e.preventDefault();
+    var rect = canvas.getBoundingClientRect();
     if (isDrawing) {
-        pos2 = {
-            x: (e.type === 'mousemove') ? e.offsetX : e.touches[0].clientX,
-            y: (e.type === 'mousemove') ? e.offsetY : e.touches[0].clientY
+        var touches = (e.type === 'mousemove') ? [{ clientX: e.clientX, clientY: e.clientY }] : e.touches;
+
+        for (var i = 0; i < touches.length; i++) {
+            pos2 = {
+                x: (e.type === 'mousemove') ? touches[i].clientX - rect.left : touches[i].clientX - rect.left,
+                y: (e.type === 'mousemove') ? touches[i].clientY - rect.top : touches[i].clientY - rect.top
+            };
+
+            // fill net ve
+            ctx.beginPath();
+            ctx.arc(pos1.x, pos1.y, size, 0, 2 * Math.PI);
+            ctx.fillStyle = colorPaint;
+            ctx.fill();
+
+            // ve outline
+            ctx.beginPath();
+            ctx.moveTo(pos1.x, pos1.y);
+            ctx.lineTo(pos2.x, pos2.y);
+            ctx.strokeStyle = colorPaint;
+            ctx.lineWidth = size * 2;
+            ctx.stroke();
+
+            pos1.x = pos2.x;
+            pos1.y = pos2.y;
         }
-
-        // fill net ve
-        ctx.beginPath();
-        ctx.arc(pos1.x, pos1.y, size, 0, 2 * Math.PI);
-        ctx.fillStyle = colorPaint;
-        ctx.fill();
-
-        // ve outline
-        ctx.beginPath();
-        ctx.moveTo(pos1.x, pos1.y);
-        ctx.lineTo(pos2.x, pos2.y);
-        ctx.strokeStyle = colorPaint;
-        ctx.lineWidth = size * 2;
-        ctx.stroke();
-
-        pos1.x = pos2.x;
-        pos1.y = pos2.y;
     }
 }
 
@@ -77,6 +83,17 @@ function stopDrawing(e) {
     e.preventDefault();
     isDrawing = false;
 }
+
+// Điều chỉnh kích thước canvas dựa trên kích thước màn hình
+function adjustCanvasSize() {
+    var canvasStats = canvas.getClientRects()[0];
+    canvas.width = canvasStats.width;
+    canvas.height = canvasStats.height;
+}
+
+// Gọi hàm điều chỉnh khi trang được tải và thay đổi kích thước màn hình
+window.addEventListener('load', adjustCanvasSize);
+window.addEventListener('resize', adjustCanvasSize);
 
 color.addEventListener('change', function(e) {
     colorPaint = e.target.value;
