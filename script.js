@@ -42,11 +42,10 @@ canvas.addEventListener('touchmove', draw);
 
 function draw(e) {
     e.preventDefault();
-    var rect = canvas.getBoundingClientRect();
     if (isDrawing) {
         pos2 = {
-            x: (e.type === 'mousemove') ? e.clientX - rect.left : e.touches[0].clientX - rect.left,
-            y: (e.type === 'mousemove') ? e.clientY - rect.top : e.touches[0].clientY - rect.top
+            x: (e.type === 'mousemove') ? e.offsetX : e.touches[0].clientX,
+            y: (e.type === 'mousemove') ? e.offsetY : e.touches[0].clientY
         }
 
         // fill net ve
