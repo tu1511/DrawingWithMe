@@ -74,7 +74,7 @@ footer {
 
     canvas {
         margin: 20px;
-        height: 620px;
+        height: 600px;
         width: 94%;
     }
 
