@@ -38,13 +38,14 @@ span , input{
 canvas {
     border: 1px solid black;
     margin: 10px auto;
-    /* background-color: #ffffff; */
 }
 
 .container {
     display: flex;
     justify-content: center;
 }
+
+/* responsive */
 
 @media only screen and (max-width: 600px) {
     canvas {
@@ -53,11 +54,3 @@ canvas {
         width: 360px;
     }
 }
-
-@media only screen and (min-width: 768px) {
-    canvas {
-        margin: 20px;
-        height: 820px;
-        width: 900px;
-    }
-  }
