@@ -22,8 +22,25 @@ body {
     background: white;
     font-size: 20px;
     padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span {
+    border: 2px solid black;
 }
 
 #save {
     margin-left: auto;
+}
+
+canvas {
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
 }
