@@ -118,10 +118,21 @@ increase.addEventListener('click', function() {
 clear.addEventListener('click', function() {
     //     var canvasStats = canvas.getClientRects()[0];
     //     ctx.clearRect(0, 0, canvasStats.width, canvasStats.height);
+    ctx.fillStyle = '#ffffff';
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
 
 save.addEventListener('click', function() {
-    var output = canvas.toDataURL('image/png');
+    // Lưu trữ một bản sao của canvas với màu nền trắng
+    var tempCanvas = document.createElement('canvas');
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+    var tempCtx = tempCanvas.getContext('2d');
+    tempCtx.fillStyle = '#ffffff';
+    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+    tempCtx.drawImage(canvas, 0, 0);
+
+    // Tạo liên kết tải xuống từ bản sao có màu nền trắng
+    var output = tempCanvas.toDataURL('image/png');
     save.setAttribute('href', output);
 });
