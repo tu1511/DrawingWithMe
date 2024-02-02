@@ -69,12 +69,11 @@ footer {
 @media only screen and (max-width: 600px) {
     body {
         min-height: auto;
-
     }
 
     canvas {
         margin: 20px;
-        height: 620px;
+        height: 580px;
         width: 94%;
     }
 
